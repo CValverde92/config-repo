@@ -1,0 +1,9 @@
+logging:
+  level:
+    root: INFO
+    org.springframework.web: DEBUG
+
+security:
+  jwt:
+    secret-key: CaRlOsBcDekLmNoPqRsTuVwXyZ0123451992+ab/cd==
+    expiration: 86400
