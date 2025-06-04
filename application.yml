@@ -1,9 +1,18 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://discovery-server:8761/eureka/
+    healthcheck:
+      enabled: true
+
+spring:
+  data:
+    mongodb:
+      host: ${MONGO_HOST:localhost}
+      port: ${MONGO_PORT:27017}
+      auto-index-creation: true
+
 logging:
   level:
     root: INFO
-    org.springframework.web: DEBUG
-
-security:
-  jwt:
-    secret-key: CaRlOsBcDekLmNoPqRsTuVwXyZ0123451992+ab/cd==
-    expiration: 86400
+    org.springframework.web: INFO

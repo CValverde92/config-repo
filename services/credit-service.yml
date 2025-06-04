@@ -3,9 +3,26 @@ server:
 
 spring:
   application:
-    name: credit-service
+    name: credit-service  # Corregido: antes decía "credit-service" dos veces
   data:
     mongodb:
-      host: localhost
-      port: 27017
+      host: ${MONGO_HOST:localhost}
+      port: ${MONGO_PORT:27017}
       database: creditdb
+      auto-index-creation: true
+
+credit:
+  types:
+    personal:
+      max-credits: 1
+    business:
+      max-credits: 10
+  credit-card:
+    min-limit: 100.0
+    max-limit: 10000.0
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics

@@ -3,9 +3,26 @@ server:
 
 spring:
   application:
-    name: credit-service
+    name: transaction-service  # Corregido: antes decía "credit-service"
   data:
     mongodb:
-      host: localhost
-      port: 27017
+      host: ${MONGO_HOST:localhost}
+      port: ${MONGO_PORT:27017}
       database: transactiondb
+      auto-index-creation: true
+
+transaction:
+  limits:
+    max-amount: 10000.0
+    min-amount: 1.0
+  types:
+    - DEPOSIT
+    - WITHDRAWAL
+    - TRANSFER
+    - PAYMENT
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics

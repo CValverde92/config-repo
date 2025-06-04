@@ -6,6 +6,26 @@ spring:
     name: account-service
   data:
     mongodb:
-      host: localhost
-      port: 27017
+      host: ${MONGO_HOST:localhost}
+      port: ${MONGO_PORT:27017}
       database: accountdb
+      auto-index-creation: true
+
+account:
+  types:
+    savings:
+      monthly-transaction-limit: 5
+      maintenance-fee: 0.0
+    checking:
+      monthly-transaction-limit: -1 # ilimitado
+      maintenance-fee: 10.0
+    fixed-term:
+      monthly-transaction-limit: 1
+      maintenance-fee: 0.0
+      operation-day: 10 # día del mes para operaciones
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
